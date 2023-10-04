@@ -1,12 +1,14 @@
 package br.com.residencia.biblioteca.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +29,16 @@ public class Aluno {
 		CONSTRAINT alunos_cpf_key UNIQUE (cpf),
 		CONSTRAINT alunos_pkey PRIMARY KEY (numeromatriculaaluno)
 		);
+	 */
+	
+	/*
+	 * 	@Entity - toda classe que for uma tabela no banco recebe @Entity
+		@Table(name = "tabela") - coloca embaixo do entity para falar qual a table que é equivalente no banco
+
+		@Id - identificador único
+		@GeneratedValue(strategy = GenerationType.IDENTITY) - IDENTITY - banco de dados é o responsável
+
+		@Column(name = "nomedacoluna") = identifica o nome da coluna no banco
 	 */
 	
 	// Criação dos atributos
@@ -59,6 +71,9 @@ public class Aluno {
 	
 	@Column(name = "cidade")
 	private String cidade;
+	
+	@OneToMany(mappedBy = "aluno")
+	private List<Emprestimo> emprestimos;
 
 	// Getters e Setters
 	
@@ -132,6 +147,14 @@ public class Aluno {
 
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
+	}
+
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
 	}
 	
 }

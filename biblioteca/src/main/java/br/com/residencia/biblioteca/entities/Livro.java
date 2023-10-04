@@ -16,7 +16,7 @@ public class Livro {
 		codigolivro serial NOT NULL,
 		nomelivro varchar(120) NOT NULL,
 		nomeautor varchar(100) NULL,
-		atalancamento date NULL,
+		datalancamento date NULL,
 		codigoisbn int4 NOT NULL,
 		codigoeditora int4 NOT NULL,
 		CONSTRAINT livros_pkey PRIMARY KEY (codigolivro)
@@ -36,8 +36,8 @@ public class Livro {
 	@Column(name = "nomeautor")
 	private Integer nomeAutor;
 	
-	@Column(name = "atalancamento")
-	private Integer atalancamento;
+	@Column(name = "datalancamento")
+	private Integer dataLancamento;
 	
 	@Column(name = "codigoisbn")
 	private Integer codigoIsbn;
@@ -71,12 +71,12 @@ public class Livro {
 		this.nomeAutor = nomeAutor;
 	}
 
-	public Integer getAtalancamento() {
-		return atalancamento;
+	public Integer getDataLancamento() {
+		return dataLancamento;
 	}
 
 	public void setAtalancamento(Integer atalancamento) {
-		this.atalancamento = atalancamento;
+		this.dataLancamento = atalancamento;
 	}
 
 	public Integer getCodigoIsbn() {

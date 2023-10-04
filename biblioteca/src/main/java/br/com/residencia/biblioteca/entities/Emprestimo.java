@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,8 +35,9 @@ public class Emprestimo {
 	@Column(name = "codigoemprestimo")
 	private Integer codigoEmprestimo;
 	
-	@Column(name = "numeromatriculaaluno")
-	private Integer numeroMatriculaAluno;
+	@ManyToOne
+	@JoinColumn(name = "numeromatriculaaluno", referencedColumnName = "numeromatriculaaluno")
+	private Aluno aluno;
 	
 	@Column(name = "codigolivro")
 	private Integer codigoLivro;
@@ -56,14 +59,6 @@ public class Emprestimo {
 
 	public void setCodigoEmprestimo(Integer codigoEmprestimo) {
 		this.codigoEmprestimo = codigoEmprestimo;
-	}
-
-	public Integer getNumeroMatriculaAluno() {
-		return numeroMatriculaAluno;
-	}
-
-	public void setNumeroMatriculaAluno(Integer numeroMatriculaAluno) {
-		this.numeroMatriculaAluno = numeroMatriculaAluno;
 	}
 
 	public Integer getCodigoLivro() {
@@ -97,6 +92,15 @@ public class Emprestimo {
 	public void setValorEmprestimo(BigDecimal valorEmprestimo) {
 		this.valorEmprestimo = valorEmprestimo;
 	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+	
 	
 	
 }
