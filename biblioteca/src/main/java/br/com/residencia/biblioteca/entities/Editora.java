@@ -88,6 +88,13 @@ public class Editora {
 	public void setImagemUrl(String imagemUrl) {
 		this.imagemUrl = imagemUrl;
 	}
-	
+
+	public List<Livro> getLivros() {
+		return livros;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
 	
 }

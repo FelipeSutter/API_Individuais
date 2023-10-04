@@ -103,6 +103,13 @@ public class Livro {
 	public void setEditora(Editora editora) {
 		this.editora = editora;
 	}
-	
+
+	public List<Emprestimo> getEmprestimos() {
+		return emprestimos;
+	}
+
+	public void setEmprestimos(List<Emprestimo> emprestimos) {
+		this.emprestimos = emprestimos;
+	}
 	
 }
