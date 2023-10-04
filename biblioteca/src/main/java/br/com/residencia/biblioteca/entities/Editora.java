@@ -1,10 +1,13 @@
 package br.com.residencia.biblioteca.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,6 +43,9 @@ public class Editora {
 	
 	@Column(name = "imagem_url")
 	private String imagemUrl;
+	
+	@OneToMany(mappedBy = "editora")
+	private List<Livro> livros;
 
 	// Getters e Setters
 	

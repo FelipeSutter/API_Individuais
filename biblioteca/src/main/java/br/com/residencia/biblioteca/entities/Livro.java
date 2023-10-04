@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -42,8 +44,9 @@ public class Livro {
 	@Column(name = "codigoisbn")
 	private Integer codigoIsbn;
 	
-	@Column(name = "codigoeditora")
-	private Integer codigoEditora;
+	@ManyToOne
+	@JoinColumn(name = "codigoeditora", referencedColumnName = "codigoeditora")
+	private Editora editora;
 
 	// Getters e Setters
 	
@@ -75,7 +78,7 @@ public class Livro {
 		return dataLancamento;
 	}
 
-	public void setAtalancamento(Integer atalancamento) {
+	public void setDataLancamento(Integer atalancamento) {
 		this.dataLancamento = atalancamento;
 	}
 
@@ -87,12 +90,12 @@ public class Livro {
 		this.codigoIsbn = codigoIsbn;
 	}
 
-	public Integer getCodigoEditora() {
-		return codigoEditora;
+	public Editora getEditora() {
+		return editora;
 	}
 
-	public void setCodigoEditora(Integer codigoEditora) {
-		this.codigoEditora = codigoEditora;
+	public void setEditora(Editora editora) {
+		this.editora = editora;
 	}
 	
 	
