@@ -2,6 +2,8 @@ package br.com.residencia.biblioteca.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,6 +46,7 @@ public class Editora {
 	@Column(name = "imagem_url")
 	private String imagemUrl;
 	
+	@JsonManagedReference(value = "editora-mng-ref")
 	@OneToMany(mappedBy = "editora")
 	private List<Livro> livros;
 

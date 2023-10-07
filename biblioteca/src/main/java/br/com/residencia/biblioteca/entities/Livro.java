@@ -1,6 +1,10 @@
 package br.com.residencia.biblioteca.entities;
 
+import java.util.Date;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -36,20 +40,22 @@ public class Livro {
 	private Integer codigoLivro;
 	
 	@Column(name = "nomelivro")
-	private Integer nomeLivro;
+	private String nomeLivro;
 	
 	@Column(name = "nomeautor")
-	private Integer nomeAutor;
+	private String nomeAutor;
 	
 	@Column(name = "datalancamento")
-	private Integer dataLancamento;
+	private Date dataLancamento;
 	
 	@Column(name = "codigoisbn")
 	private Integer codigoIsbn;
 	
+	@JsonManagedReference(value = "livro-mng-ref")
 	@OneToMany(mappedBy = "livro")
 	private List<Emprestimo> emprestimos;
 	
+	@JsonBackReference(value = "editora-mng-ref")
 	@ManyToOne
 	@JoinColumn(name = "codigoeditora", referencedColumnName = "codigoeditora")
 	private Editora editora;
@@ -64,28 +70,28 @@ public class Livro {
 		this.codigoLivro = codigoLivro;
 	}
 
-	public Integer getNomeLivro() {
+	public String getNomeLivro() {
 		return nomeLivro;
 	}
 
-	public void setNomeLivro(Integer nomeLivro) {
+	public void setNomeLivro(String nomeLivro) {
 		this.nomeLivro = nomeLivro;
 	}
 
-	public Integer getNomeAutor() {
+	public String getNomeAutor() {
 		return nomeAutor;
 	}
 
-	public void setNomeAutor(Integer nomeAutor) {
+	public void setNomeAutor(String nomeAutor) {
 		this.nomeAutor = nomeAutor;
 	}
 
-	public Integer getDataLancamento() {
+	public Date getDataLancamento() {
 		return dataLancamento;
 	}
 
-	public void setDataLancamento(Integer atalancamento) {
-		this.dataLancamento = atalancamento;
+	public void setDataLancamento(Date dataLancamento) {
+		this.dataLancamento = dataLancamento;
 	}
 
 	public Integer getCodigoIsbn() {
