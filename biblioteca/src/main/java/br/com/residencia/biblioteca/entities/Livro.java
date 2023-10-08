@@ -19,18 +19,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "livro")
 public class Livro {
-
-	/*
-	 * 	CREATE TABLE public.livro (
-		codigolivro serial NOT NULL,
-		nomelivro varchar(120) NOT NULL,
-		nomeautor varchar(100) NULL,
-		datalancamento date NULL,
-		codigoisbn int4 NOT NULL,
-		codigoeditora int4 NOT NULL,
-		CONSTRAINT livros_pkey PRIMARY KEY (codigolivro)
-		);
-	 */
 	
 	// Criação dos atributos
 	

@@ -18,22 +18,6 @@ import jakarta.persistence.Table;
 public class Aluno {
 	
 	/*
-	 * 	CREATE TABLE public.aluno (
-		numeromatriculaaluno serial NOT NULL,
-		nome varchar(100) NOT NULL,
-		datanascimento date NULL,
-		cpf bpchar(11) NULL,
-		logradouro varchar(100) NULL,
-		numerologradouro varchar(10) NULL,
-		complemento varchar(50) NULL,
-		bairro varchar(50) NULL,
-		cidade varchar(50) NULL,
-		CONSTRAINT alunos_cpf_key UNIQUE (cpf),
-		CONSTRAINT alunos_pkey PRIMARY KEY (numeromatriculaaluno)
-		);
-	 */
-	
-	/*
 	 * 	@Entity - toda classe que for uma tabela no banco recebe @Entity
 		@Table(name = "tabela") - coloca embaixo do entity para falar qual a table que é equivalente no banco
 

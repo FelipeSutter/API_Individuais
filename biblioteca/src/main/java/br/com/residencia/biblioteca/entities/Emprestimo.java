@@ -17,18 +17,6 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "emprestimo")
 public class Emprestimo {
-
-	/*
-	 * 	CREATE TABLE public.emprestimo (
-		codigoemprestimo serial NOT NULL,
-		numeromatriculaaluno int4 NOT NULL,
-		codigolivro int4 NOT NULL,
-		dataemprestimo date NOT NULL DEFAULT now(),
-		dataentrega date NULL,
-		valoremprestimo numeric(10,2) NULL,
-		CONSTRAINT emprestimo_pkey PRIMARY KEY (codigoemprestimo)
-		);
-	 */
 	
 	// Criação dos atributos
 	

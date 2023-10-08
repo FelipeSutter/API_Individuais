@@ -16,17 +16,6 @@ import jakarta.persistence.Table;
 @Table(name = "editora")
 public class Editora {
 	
-	/*
-	 * 	CREATE TABLE public.editora (
-		codigoeditora serial NOT NULL,
-		nome varchar(50) NOT NULL,
-		imagem_nome varchar(255),
-		magem_filename varchar(255),
-		imagem_url varchar(255),	
-		CONSTRAINT editora_pkey PRIMARY KEY (codigoeditora)
-		);
-	 */
-	
 	// Criação dos atributos
 	
 	@Id
