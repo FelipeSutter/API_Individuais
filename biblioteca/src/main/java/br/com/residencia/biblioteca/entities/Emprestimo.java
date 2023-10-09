@@ -25,12 +25,12 @@ public class Emprestimo {
 	@Column(name = "codigoemprestimo")
 	private Integer codigoEmprestimo;
 	
-	@JsonBackReference(value = "aluno-mng-ref")
+	@JsonBackReference(value = "aluno-emprestimo-ref")
 	@ManyToOne
 	@JoinColumn(name = "numeromatriculaaluno", referencedColumnName = "numeromatriculaaluno")
 	private Aluno aluno;
 	
-	@JsonBackReference(value = "livro-mng-ref")
+	@JsonBackReference(value = "livro-emprestimo-ref")
 	@ManyToOne
 	@JoinColumn(name = "codigolivro", referencedColumnName = "codigolivro")
 	private Livro livro;

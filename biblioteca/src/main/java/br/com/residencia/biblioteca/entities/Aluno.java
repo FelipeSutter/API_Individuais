@@ -58,7 +58,7 @@ public class Aluno {
 	@Column(name = "cidade")
 	private String cidade;
 	
-	@JsonManagedReference(value = "aluno-mng-ref")
+	@JsonManagedReference(value = "aluno-emprestimo-ref")
 	@OneToMany(mappedBy = "aluno")
 	private List<Emprestimo> emprestimos;
 

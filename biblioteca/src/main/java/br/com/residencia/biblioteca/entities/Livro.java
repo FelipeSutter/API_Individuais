@@ -39,11 +39,11 @@ public class Livro {
 	@Column(name = "codigoisbn")
 	private Integer codigoIsbn;
 	
-	@JsonManagedReference(value = "livro-mng-ref")
+	@JsonManagedReference(value = "livro-emprestimo-ref")
 	@OneToMany(mappedBy = "livro")
 	private List<Emprestimo> emprestimos;
 	
-	@JsonBackReference(value = "editora-mng-ref")
+	@JsonBackReference(value = "editora-livro-ref")
 	@ManyToOne
 	@JoinColumn(name = "codigoeditora", referencedColumnName = "codigoeditora")
 	private Editora editora;
