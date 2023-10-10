@@ -42,7 +42,7 @@ public class Aluno {
 	@Column(name = "datanascimento")
 	private Date dataNascimento;
 	
-	@Column(name = "cpf")
+	@Column(name = "cpf", unique=true)
 	private String cpf;
 	
 	@Column(name = "logradouro")
