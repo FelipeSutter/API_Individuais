@@ -26,20 +26,38 @@ public class EditoraService {
 		return repository.findById(id).orElse(null);
 	}
 	
-	// create, aqui ele está criando um aluno, quando cria um aluno n dá a coluna de ID
+	// create, aqui ele está criando um editora, quando cria um editora n dá a coluna de ID
 	public Editora criar(Editora editora) {
 		return repository.save(editora);
 	}
 	
-	// update, aqui ele está atualizando um aluno, ele diferencia por causa do ID 
+	// update, aqui ele está atualizando um editora, ele diferencia por causa do ID 
 	// quando atualiza tem que botar o ID
 	public Editora atualizar(Editora editora) {
 		return repository.save(editora);
 	}
 	
 	// delete pelo objeto 
-	public void deletar(Editora editora) {
+	public boolean deletar(Editora editora) {
+		if(editora == null) {
+			return false;
+		}
+		
+		Editora editoraExist = buscarPorId(editora.getCodigoEditora());
+		
+		if(editoraExist == null) {
+			return false;
+		}
+		
 		repository.delete(editora);
+		
+		Editora editoraContinuaExist = buscarPorId(editora.getCodigoEditora());
+		
+		if(editoraContinuaExist == null) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 }

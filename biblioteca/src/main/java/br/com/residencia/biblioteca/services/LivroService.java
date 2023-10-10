@@ -38,8 +38,26 @@ public class LivroService {
 	}
 	
 	// delete pelo objeto 
-	public void deletar(Livro livro) {
+	public boolean deletar(Livro livro) {
+		if(livro == null) {
+			return false;
+		}
+		
+		Livro livroExist = buscarPorId(livro.getCodigoLivro());
+		
+		if(livroExist == null) {
+			return false;
+		}
+		
 		repository.delete(livro);
+		
+		Livro livroContinuaExist = buscarPorId(livro.getCodigoLivro());
+		
+		if(livroContinuaExist == null) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 }

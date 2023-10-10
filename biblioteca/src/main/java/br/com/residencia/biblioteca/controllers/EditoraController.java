@@ -35,9 +35,9 @@ public class EditoraController {
 	public ResponseEntity<Editora> buscarPorId(@PathVariable Integer id) {
 		Editora editora = service.buscarPorId(id);
 		if(editora == null) {
-			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(editora, HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
+			return new ResponseEntity<>(editora, HttpStatus.OK);
 		}
 	}
 	
@@ -53,8 +53,12 @@ public class EditoraController {
 	
 	@DeleteMapping
 	public ResponseEntity<String> deletar(@RequestBody Editora editora) {
-		service.deletar(editora);
-		return new ResponseEntity<>("Deletado com Sucesso!", HttpStatus.OK);
+		if(service.deletar(editora) == true) {
+			return new ResponseEntity<>("Deletado com Sucesso!", HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>("Não foi possível deletar", HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 }

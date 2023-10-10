@@ -35,9 +35,9 @@ public class AlunoController {
 	public ResponseEntity<Aluno> buscarPorId(@PathVariable Integer id) {
 		Aluno aluno = service.buscarPorId(id);
 		if(aluno == null) {
-			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(aluno, HttpStatus.NOT_FOUND);
 		} else {
-			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
+			return new ResponseEntity<>(aluno, HttpStatus.OK);
 		}
 	}
 	
@@ -60,8 +60,12 @@ public class AlunoController {
 	
 	@DeleteMapping
 	public ResponseEntity<String> deletar(@RequestBody Aluno aluno) {
-		service.deletar(aluno);
-		return new ResponseEntity<>("Deletado com Sucesso!", HttpStatus.OK);
+		if(service.deletar(aluno) == true) {
+			return new ResponseEntity<>("Deletado com Sucesso!", HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>("Não foi possível deletar", HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 }

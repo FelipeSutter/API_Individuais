@@ -38,8 +38,26 @@ public class EmprestimoService {
 	}
 	
 	// delete pelo objeto 
-	public void deletar(Emprestimo emprestimo) {
+	public boolean deletar(Emprestimo emprestimo) {
+		if(emprestimo == null) {
+			return false;
+		}
+		
+		Emprestimo emprestimoExist = buscarPorId(emprestimo.getCodigoEmprestimo());
+		
+		if(emprestimoExist == null) {
+			return false;
+		}
+		
 		repository.delete(emprestimo);
+		
+		Emprestimo emprestimoContinuaExist = buscarPorId(emprestimo.getCodigoEmprestimo());
+		
+		if(emprestimoContinuaExist == null) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 }

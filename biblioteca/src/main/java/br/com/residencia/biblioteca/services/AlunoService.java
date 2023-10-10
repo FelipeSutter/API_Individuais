@@ -51,11 +51,36 @@ public class AlunoService {
 	}
 	
 	// delete pelo objeto 
-	public void deletar(Aluno aluno) {
-		repository.delete(aluno);
+	public Boolean deletar(Aluno aluno) {
+		
+		if(aluno == null) {
+			return false;
+		}
+		
+		Aluno alunoExist = buscarPorId(aluno.getNumeroMatriculaAluno());
+		
+		if(alunoExist == null) {
+			return false;
+		}
 		/*
-		 * Aluno confereAlunoDeletado = buscarPorId(aluno.getNumeroMatriculaAluno());
+		 * dá p fazer desse jeito tbm
+		 * if(alunoExist == null) {
+			return false;
+			}
+			else {
+				repository.delete(aluno);
+				return true;
+			}
 		 */
+		repository.delete(aluno);
+		
+		Aluno alunoContinuaExist = buscarPorId(aluno.getNumeroMatriculaAluno());
+		
+		if(alunoContinuaExist == null) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/* delete pelo ID 
