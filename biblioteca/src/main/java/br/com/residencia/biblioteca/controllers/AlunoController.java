@@ -33,10 +33,12 @@ public class AlunoController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Aluno> buscarPorId(@PathVariable Integer id) {
-		return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
-		
-		// outro jeito de fazer
-		// ResponseEntity.ok(service.buscarPorId(id))
+		Aluno aluno = service.buscarPorId(id);
+		if(aluno == null) {
+			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
+		}
 	}
 	
 	/* Outra forma de fazer

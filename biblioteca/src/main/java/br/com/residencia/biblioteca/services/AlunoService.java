@@ -22,11 +22,21 @@ public class AlunoService {
 	// read by id
 	public Aluno buscarPorId(Integer id) {
 		// primeira versao
-		return repository.findById(id).get();		
+		//return repository.findById(id).get();		
 		
 		/* versao com excecao
 		 return repository.findById(id).orElseThrow(() -> new RuntimeException());
 		 */
+		
+		/*
+		 * Optional<Aluno> alunoBanco = alunoRepo.findById(id);
+			if(alunoBanco.isPresent())
+				return alunoBanco.get();
+			else
+				return null;
+		 */
+		// versão de uma linha
+		return repository.findById(id).orElse(null);
 	}
 	
 	// create, aqui ele está criando um aluno, quando cria um aluno n dá a coluna de ID

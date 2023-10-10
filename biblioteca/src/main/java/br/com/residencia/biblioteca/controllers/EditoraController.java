@@ -33,10 +33,12 @@ public class EditoraController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Editora> buscarPorId(@PathVariable Integer id) {
-		return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
-		
-		// outro jeito de fazer
-		// ResponseEntity.ok(service.buscarPorId(id))
+		Editora editora = service.buscarPorId(id);
+		if(editora == null) {
+			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
+		}
 	}
 	
 	@PostMapping

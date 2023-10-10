@@ -33,10 +33,12 @@ public class EmprestimoController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Emprestimo> buscarPorId(@PathVariable Integer id) {
-		return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
-		
-		// outro jeito de fazer
-		// ResponseEntity.ok(service.buscarPorId(id))
+		Emprestimo emprestimo = service.buscarPorId(id);
+		if(emprestimo == null) {
+			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(service.buscarPorId(id), HttpStatus.OK);
+		}
 	}
 	
 	@PostMapping

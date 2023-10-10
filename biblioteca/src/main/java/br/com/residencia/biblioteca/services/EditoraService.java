@@ -22,7 +22,8 @@ public class EditoraService {
 	// read by id
 	public Editora buscarPorId(Integer id) {
 		// primeira versao
-		return repository.findById(id).get();		
+		//return repository.findById(id).get();		
+		return repository.findById(id).orElse(null);
 	}
 	
 	// create, aqui ele está criando um aluno, quando cria um aluno n dá a coluna de ID
