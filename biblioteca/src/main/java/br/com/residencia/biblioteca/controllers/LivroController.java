@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.residencia.biblioteca.dto.LivroDTO;
 import br.com.residencia.biblioteca.entities.Livro;
 import br.com.residencia.biblioteca.services.LivroService;
 
@@ -31,6 +32,11 @@ public class LivroController {
 		// ResponseEntity.ok(service.listarTudo())
 	}
 	
+	@GetMapping("/dto")
+	public ResponseEntity<List<LivroDTO>> listarTudoDTO() {
+		return new ResponseEntity<>(service.listarTudoDTO(), HttpStatus.OK);
+	}
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> buscarPorId(@PathVariable Integer id) {
 		Livro livro = service.buscarPorId(id);
@@ -38,6 +44,16 @@ public class LivroController {
 			return new ResponseEntity<>(livro, HttpStatus.NOT_FOUND);
 		} else {
 			return new ResponseEntity<>(livro, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping("/dto/{id}")
+	public ResponseEntity<LivroDTO> buscarPorIdDTO(@PathVariable Integer id) {
+		LivroDTO livroDTO = service.buscarPorIdDTO(id);
+		if(livroDTO == null) {
+			return new ResponseEntity<>(livroDTO, HttpStatus.NOT_FOUND);
+		} else {
+			return new ResponseEntity<>(livroDTO, HttpStatus.OK);
 		}
 	}
 	

@@ -1,10 +1,12 @@
 package br.com.residencia.biblioteca.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.residencia.biblioteca.dto.LivroDTO;
 import br.com.residencia.biblioteca.entities.Livro;
 import br.com.residencia.biblioteca.repositories.LivroRepository;
 
@@ -19,6 +21,31 @@ public class LivroService {
 		return repository.findAll();
 	}
 	
+	// read
+	public List<LivroDTO> listarTudoDTO() {
+		
+		List<Livro> livros = repository.findAll();
+		List<LivroDTO> livrosDTO = new ArrayList<>();
+				
+		// faz um forEach que percorre o tamanho da lista de livros, a cada interação vai 
+		for(Livro livro : livros) {
+					
+			// cria um novo objeto a cada novo livro encontrado na lista
+			LivroDTO livroDTO = new LivroDTO();
+					
+			// setta os valores do DTO
+			livroDTO.setCodigoLivro(livro.getCodigoLivro());
+			livroDTO.setNomeLivro(livro.getNomeLivro());
+			livroDTO.setDataLancamento(livro.getDataLancamento());
+			livroDTO.setNomeEditora(livro.getEditora().getNome());
+			        
+			// adiciona na lista ao final do loop
+			livrosDTO.add(livroDTO);
+		}
+
+		return livrosDTO;
+	}
+	
 	// read by id
 	public Livro buscarPorId(Integer id) {
 		// primeira versao
@@ -26,12 +53,23 @@ public class LivroService {
 		return repository.findById(id).orElse(null);
 	}
 	
-	// create, aqui ele está criando um aluno, quando cria um aluno n dá a coluna de ID
+	// dto by id
+	public LivroDTO buscarPorIdDTO(Integer id) {
+		
+		Livro livro = repository.findById(id).orElse(null);
+		if(livro != null) {
+			return new LivroDTO(livro.getCodigoLivro(), livro.getNomeLivro(), livro.getDataLancamento(), livro.getEditora().getNome());
+		}
+		
+		return null;
+	}
+	
+	// create, aqui ele está criando um livro, quando cria um livro n dá a coluna de ID
 	public Livro criar(Livro livro) {
 		return repository.save(livro);
 	}
 	
-	// update, aqui ele está atualizando um aluno, ele diferencia por causa do ID 
+	// update, aqui ele está atualizando um livro, ele diferencia por causa do ID 
 	// quando atualiza tem que botar o ID
 	public Livro atualizar(Livro livro) {
 		return repository.save(livro);
