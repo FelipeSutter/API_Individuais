@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.residencia.biblioteca.dto.EditoraDTO;
 import br.com.residencia.biblioteca.entities.Editora;
 import br.com.residencia.biblioteca.services.EditoraService;
 
@@ -44,6 +45,11 @@ public class EditoraController {
 	@PostMapping
 	public ResponseEntity<Editora> criar(@RequestBody Editora editora) {
 		return new ResponseEntity<>(service.criar(editora), HttpStatus.CREATED);
+	}
+	
+	@PostMapping("/dto")
+	public ResponseEntity<EditoraDTO> criarDTO(@RequestBody EditoraDTO editoraDTO) {
+		return new ResponseEntity<>(service.criarDTO(editoraDTO), HttpStatus.CREATED);
 	}
 	
 	@PutMapping
