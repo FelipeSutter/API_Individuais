@@ -37,8 +37,10 @@ public class EditoraService {
 	
 	// converte entidade pra dto
 	private EditoraDTO entityToDto(Editora editora) {
+		
 		// define o mapper para a editoraDTO
 		EditoraDTO editoraDTO = modelMapper.map(editora, EditoraDTO.class);
+		
 		// setta os valores definidos no dto
 		editoraDTO.setCodigoEditora(editora.getCodigoEditora());
 		editoraDTO.setNome(editora.getNome());
@@ -47,8 +49,10 @@ public class EditoraService {
 	
 	// converte dto pra entidade
 	private Editora DtoToEntity(EditoraDTO editoraDTO) {
+		
 		// define o mapper para a editora
 		Editora editora = modelMapper.map(editoraDTO, Editora.class);
+		
 		// setta os valores definidos no dto
 		editora.setCodigoEditora(editoraDTO.getCodigoEditora());
 		editora.setNome(editoraDTO.getNome());
@@ -57,8 +61,10 @@ public class EditoraService {
 	
 	// create do DTO
 	public EditoraDTO criarDTO(EditoraDTO editoraDTO) {
+		
 		// primeiro converte o DTO para entidade para o dto receber as informações da entidade
 		Editora editora = DtoToEntity(editoraDTO);
+		
 		// após receber as informações converte para dto novamente e salva as informações
 		return entityToDto(repository.save(editora));
 	}
