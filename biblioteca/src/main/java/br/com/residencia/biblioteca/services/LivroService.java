@@ -16,6 +16,9 @@ public class LivroService {
 	@Autowired
 	private LivroRepository repository;
 	
+	@Autowired
+	EmailService emailService;
+	
 	// read
 	public List<Livro> listarTudo() {
 		return repository.findAll();
@@ -58,7 +61,9 @@ public class LivroService {
 		
 		Livro livro = repository.findById(id).orElse(null);
 		if(livro != null) {
-			return new LivroDTO(livro.getCodigoLivro(), livro.getNomeLivro(), livro.getDataLancamento(), livro.getEditora().getNome());
+			return new LivroDTO(livro.getCodigoLivro(), 
+					livro.getNomeLivro(), livro.getDataLancamento(), 
+					livro.getEditora().getNome());
 		}
 		
 		return null;
@@ -66,7 +71,10 @@ public class LivroService {
 	
 	// create, aqui ele está criando um livro, quando cria um livro n dá a coluna de ID
 	public Livro criar(Livro livro) {
-		return repository.save(livro);
+		Livro newLivro = repository.save(livro);
+		// email que vai receber 
+		emailService.enviarEmail("felipe123@gmail.com", "Novo livro cadastrado", newLivro.toString());
+		return newLivro;
 	}
 	
 	// update, aqui ele está atualizando um livro, ele diferencia por causa do ID 

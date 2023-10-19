@@ -17,6 +17,10 @@ public class AlunoService {
 	private AlunoRepository repository;
 	
 	// read
+	/**
+	 * Método que lista todos os alunos encontrados
+	 * @return Retorna uma lista de alunos.
+	 */
 	public List<Aluno> listarTudo() {
 		return repository.findAll();
 	}
