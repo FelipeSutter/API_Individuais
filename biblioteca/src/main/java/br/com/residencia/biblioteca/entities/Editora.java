@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -31,8 +32,9 @@ public class Editora {
 	@Column(name = "imagem_nome")
 	private String imagemNome;
 	
+	@Lob
 	@Column(name = "imagem_filename")
-	private String imagemFilename;
+	private byte[] imagemFilename;
 	
 	@Column(name = "imagem_url")
 	private String imagemUrl;
@@ -67,14 +69,6 @@ public class Editora {
 		this.imagemNome = imagemNome;
 	}
 
-	public String getImagemFilename() {
-		return imagemFilename;
-	}
-
-	public void setImagemFilename(String imagemFilename) {
-		this.imagemFilename = imagemFilename;
-	}
-
 	public String getImagemUrl() {
 		return imagemUrl;
 	}
@@ -90,5 +84,15 @@ public class Editora {
 	public void setLivros(List<Livro> livros) {
 		this.livros = livros;
 	}
+
+	public byte[] getImagemFilename() {
+		return imagemFilename;
+	}
+
+	public void setImagemFilename(byte[] imagemFilename) {
+		this.imagemFilename = imagemFilename;
+	}
+	
+	
 	
 }

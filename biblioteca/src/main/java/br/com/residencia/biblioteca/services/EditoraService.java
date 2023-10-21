@@ -1,10 +1,15 @@
 package br.com.residencia.biblioteca.services;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.residencia.biblioteca.dto.EditoraDTO;
 import br.com.residencia.biblioteca.entities.Editora;
@@ -96,6 +101,23 @@ public class EditoraService {
 		}
 		
 		return false;
+	}
+	
+	public Editora criarComFoto(String strEditora, MultipartFile arqImg) throws IOException {
+		Editora editora = new Editora();
+		
+		try {
+			ObjectMapper objMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+			 
+			//editora.setImagem(arqImg.getBytes());
+			editora = objMapper.readValue(strEditora, Editora.class);
+		} catch(IOException e) {
+			System.out.println("Erro ao converter a string Editora: " + e.toString());
+		}
+		editora.setImagemFilename(arqImg.getBytes());
+		// fazer o @Lob com um array de bytes
+		
+		return repository.save(editora);
 	}
 	
 }

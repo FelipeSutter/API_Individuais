@@ -1,12 +1,16 @@
 package br.com.residencia.biblioteca.services;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import br.com.residencia.biblioteca.dto.AlunoDTO;
+import br.com.residencia.biblioteca.dto.ReceitaWsDTO;
 import br.com.residencia.biblioteca.entities.Aluno;
 import br.com.residencia.biblioteca.repositories.AlunoRepository;
 
@@ -137,6 +141,26 @@ public class AlunoService {
 		}
 		
 		return false;
+	}
+	
+	public ReceitaWsDTO consultaCnpj(String cnpj) {
+		// RestTemplate serve para utilizar informações de APIs externas.
+		RestTemplate restTemplate = new RestTemplate();
+		
+		// url da api que espera um cnpj
+		String uri = "https://receitaws.com.br/v1/cnpj/{cnpj}";
+		
+		// espera receber uma chave / valor
+		// tem que fazer o mapper para representar o parâmetro esperado na url
+		Map<String, String> params = new HashMap<String, String>();
+		
+		// nome que a api espera receber {cnpj}, e o devido valor que ele espera
+		params.put("cnpj", cnpj);
+		
+		// url da api / no que vai converter, o DTO que foi criado anteriormente / parâmetro {cnpj}
+		ReceitaWsDTO receitaDto = restTemplate.getForObject(uri, ReceitaWsDTO.class, params);
+
+		return receitaDto;
 	}
 	
 	/* delete pelo ID 

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.residencia.biblioteca.dto.AlunoDTO;
+import br.com.residencia.biblioteca.dto.ReceitaWsDTO;
 import br.com.residencia.biblioteca.entities.Aluno;
 import br.com.residencia.biblioteca.services.AlunoService;
 
@@ -88,6 +89,11 @@ public class AlunoController {
 		else {
 			return new ResponseEntity<>("Não foi possível deletar", HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	@GetMapping("/consulta-cnpj/{cnpj}")
+	public ResponseEntity<ReceitaWsDTO> consultaCnpj(@PathVariable String cnpj) {
+		return new ResponseEntity<>(service.consultaCnpj(cnpj), HttpStatus.OK);
 	}
 	
 }
