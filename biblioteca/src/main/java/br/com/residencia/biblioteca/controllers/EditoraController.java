@@ -38,11 +38,12 @@ public class EditoraController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Editora> buscarPorId(@PathVariable Integer id) {
 		Editora editora = service.buscarPorId(id);
-		if (editora == null) {
-			return new ResponseEntity<>(editora, HttpStatus.NOT_FOUND);
-		} else {
-			return new ResponseEntity<>(editora, HttpStatus.OK);
-		}
+		return new ResponseEntity<>(editora, HttpStatus.OK);
+//		if (editora == null) {
+//			return new ResponseEntity<>(editora, HttpStatus.NOT_FOUND);
+//		} else {
+//			return new ResponseEntity<>(editora, HttpStatus.OK);
+//		}
 	}
 
 	@PostMapping

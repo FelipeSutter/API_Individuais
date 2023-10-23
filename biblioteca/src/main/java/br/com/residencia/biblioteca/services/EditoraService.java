@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.residencia.biblioteca.dto.EditoraDTO;
 import br.com.residencia.biblioteca.entities.Editora;
+import br.com.residencia.biblioteca.exceptions.NoSuchElementException;
 import br.com.residencia.biblioteca.repositories.EditoraRepository;
 
 @Service
@@ -32,7 +33,10 @@ public class EditoraService {
 	public Editora buscarPorId(Integer id) {
 		// primeira versao
 		//return repository.findById(id).get();		
-		return repository.findById(id).orElse(null);
+		//return repository.findById(id).orElse(null);
+		
+		return repository.findById(id)
+		        .orElseThrow(() -> new NoSuchElementException("Editora", id));
 	}
 	
 	// create, aqui ele está criando um editora, quando cria um editora n dá a coluna de ID
